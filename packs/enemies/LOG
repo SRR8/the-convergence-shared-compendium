@@ -1,0 +1,7 @@
+2025/11/05-17:07:07.609 91fc Recovering log #1957
+2025/11/05-17:07:07.622 91fc Delete type=0 #1957
+2025/11/05-17:07:07.622 91fc Delete type=3 #1956
+2025/11/05-17:49:13.659 1954 Level-0 table #1961: started
+2025/11/05-17:49:13.659 1954 Level-0 table #1961: 0 bytes OK
+2025/11/05-17:49:13.661 1954 Delete type=0 #1959
+2025/11/05-17:49:13.661 1954 Manual compaction at level-0 from '!actors!Idgq5GggCIYyfV6O' @ 72057594037927935 : 1 .. '!actors.items!Idgq5GggCIYyfV6O.ucX3Z8MK1Pjek0VS' @ 0 : 0; will stop at (end)
