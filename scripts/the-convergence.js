@@ -58,6 +58,7 @@ Hooks.once("init", () => {
   CONFIG.DND5E.featureTypes.class.subtypes.curse = "Curse";
   CONFIG.DND5E.featureTypes.class.subtypes.compound = "Compound";
   CONFIG.DND5E.featureTypes.class.subtypes.misfortune = "Misfortune"
+  CONFIG.DND5E.featureTypes.class.subtypes.monstrousGraft = "Monstrous Graft"
 });
 
 // Adds new Weapon types
@@ -204,4 +205,33 @@ Hooks.once("init", () => {
     ability: "int",
     id: "Compendium.the-convergence-shared-compendium.items.Item.8mVsc2eYZmrHYgos"
   }
+});
+
+Hooks.on("dnd5e.restCompleted", async (actor, result) => {
+    // 1. We only care if this was a Long Rest
+    if (!result.longRest) return;
+
+    // 2. Scan the actor for any items carrying our custom invisible flag
+    const inertPotions = actor.items.filter(i => i.flags?.alchemist?.isBrewed);
+
+    // 3. If they have none, do nothing and exit quietly
+    if (inertPotions.length === 0) return;
+
+    // 4. Gather the unique IDs of all the expired potions
+    const idsToDelete = inertPotions.map(i => i.id);
+
+    // 5. Delete them from the character sheet in one clean database operation
+    await actor.deleteEmbeddedDocuments("Item", idsToDelete);
+
+    // 6. Post a neat little thematic message to the chat
+    ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor }),
+        content: `<span style="color: purple; font-style: italic;">The magic within <strong>${actor.name}'s</strong> brewed concoctions fades, rendering them inert...</span>`
+    });
+});
+
+Hooks.once("init", () => {
+    CONFIG.DND5E.featureTypes.bombFormula = {
+        label: "Bomb Formulae"
+    };
 });
