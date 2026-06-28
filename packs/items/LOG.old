@@ -1,5 +1,3 @@
-2026/06/21-15:45:03.050 9ccc Recovering log #2929
-2026/06/21-15:45:03.050 9ccc Level-0 table #2931: started
-2026/06/21-15:45:03.052 9ccc Level-0 table #2931: 4764 bytes OK
-2026/06/21-15:45:03.056 9ccc Delete type=0 #2929
-2026/06/21-15:45:03.056 9ccc Delete type=3 #2928
+2026/06/28-18:43:31.828 71ec Recovering log #2968
+2026/06/28-18:43:31.832 71ec Delete type=0 #2968
+2026/06/28-18:43:31.832 71ec Delete type=3 #2967
